@@ -29,21 +29,12 @@ const TicketForm = () => {
     const res = await fetch("/api/Tickets", {
       method: "POST",
       body: JSON.stringify({ formData }),
-      headers: {
-        "Content-Type": "application/json",
-      },
+      "Content-Type": "application/json",
     });
 
-    console.log("Response status:", res.status);
-    console.log("Response body:", await res.text());
-
-    // if (!res.ok) {
-    //   throw new Error("Failed to create ticket");
-    // }
-
     if (!res.ok) {
-      const errorResponse = await res.json(); // Assuming the response is in JSON format
-      console.error("Error Response:", errorResponse);
+      const errorData = await res.json();
+      console.error("Failed to create ticket. Error details:", errorData);
       throw new Error("Failed to create ticket");
     }
 
@@ -109,6 +100,7 @@ const TicketForm = () => {
           <input
             id="priority-3"
             name="priority"
+            x
             type="radio"
             onChange={handleChange}
             value={3}

@@ -1,7 +1,7 @@
 import Ticket from "../../(models)/Ticket";
 import { NextResponse } from "next/server";
 
-export async function POST(req) {
+export async function POST(req, res) {
   console.log("post ran");
   try {
     const body = await req.json();
